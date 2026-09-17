@@ -12,15 +12,14 @@ function initNavToggle() {
 // ===== Konfirmasi hapus (front-end only, belum ke server) =====
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
+        console.log("Elemen yang diklik (e.target): ", e.target);
         const btn = e.target.closest(".btn-hapus");
         if (!btn) return;
 
         const row = btn.closest("tr");
         const nama = row ? row.querySelector("td")?.textContent : "data ini";
         const yakin = confirm("Yakin ingin menghapus \"" + nama + "\"?");
-        if (yakin && row) {
-            row.remove();
-        }
+        
     });
 }
 
