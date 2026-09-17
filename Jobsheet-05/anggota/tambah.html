@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SIMPUS-Mini - Tambah Anggota</title>
+    <!-- Menghubungkan ke file CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="#">
+</head>
+<body>
+
+    <!-- Header & Navigasi Utama -->
+    <header>
+        <h1>SIMPUS-Mini</h1>
+
+       <button type="button" id="nav-toggle-btn" class="nav-toggle-label" aria-label="Menu">&#9776;</button>
+        
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="buku_list.html">Daftar Buku</a></li>
+                <li><a href="anggota_list.html">Daftar Anggota</a></li>
+            </ul>
+        </nav>
+         <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+    </header>
+
+    <!-- Konten Utama -->
+    <main>
+        <section>
+            <h2>Tambah Anggota Baru</h2>
+
+            <!-- Form Tambah Anggota -->
+            <form id="form-tambah">
+                <p>
+                    <label for="nama">Nama</label><br>
+                    <input type="text" id="nama" name="nama" required>
+                </p>
+
+                <p>
+                    <label for="no_anggota">No. Anggota</label><br>
+                    <input type="text" id="no_anggota" name="no_anggota" required>
+                </p>
+
+                <p>
+                    <label for="email">Email</label><br>
+                    <input type="email" id="email" name="email" required>
+                </p>
+
+                <p>
+                    <label for="alamat">Alamat</label><br>
+                    <input type="text" id="alamat" name="alamat">
+                </p>
+
+                <p>
+                    <label for="no_hp">No. HP</label><br>
+                    <input type="text" id="no_hp" name="no_hp">
+                </p>
+
+                <p>
+                    <button type="submit">Simpan</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SIMPUS-Mini - Sistem Informasi Perpustakaan Mini</p>
+    </footer>
+    <!-- Menghubungkan ke JavaScript -->
+    <script src="../assets/js/app.js"></script>
+
+</body>
+</html>
