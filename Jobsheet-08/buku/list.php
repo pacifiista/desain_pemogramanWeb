@@ -6,7 +6,19 @@ require __DIR__ . '/../includes/koneksi.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+// penampahan variable keyword
+$keyword = $_GET['keyword'] ?? '';
+if ($keyword) {
+    // Jika ada input pencarian, gunakan ILIKE (case-insensitive) dan prepared statement
+    $sql = "SELECT * FROM buku WHERE judul ILIKE :keyword ORDER BY id DESC";
+    $stmt = $pdo->prepare($sql);
+    // Tambahkan % di awal dan akhir keyword agar bisa mencari kata di tengah kalimat
+    $stmt->execute(['keyword' => "%$keyword%"]);
+    $daftarBuku = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Jika tidak ada pencarian, tampilkan semua buku
+    $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
         <section>
             <h2>Daftar Buku</h2>
@@ -28,6 +40,7 @@ $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::
                         <th>Pengarang</th>
                         <th>Tahun</th>
                         <th>Stok</th>
+                        <th>Tanggal Ditambahkan</th>  <!-- ditambahkan -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -43,6 +56,8 @@ $daftarBuku = $pdo->query("SELECT * FROM buku ORDER BY id DESC")->fetchAll(PDO::
                             <td><?php echo $buku['pengarang']; ?></td>
                             <td><?php echo $buku['tahun']; ?></td>
                             <td><?php echo $buku['stok']; ?></td>
+                             <!-- ditambahkan -->
+                            <td><?php echo $buku['tanggal_ditambahkan'] ?? '-'; ?></td>
                             <td>
                                 <button type="button">Edit</button>
                                 <button type="button" class="btn-hapus">Hapus</button>
