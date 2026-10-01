@@ -1,5 +1,10 @@
 <?php
 require __DIR__ . '/../includes/auth.php';
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Akses ditolak! Khusus admin.'];
+    header('Location: list.php');
+    exit;
+}
 session_start();
 require __DIR__ . '/../includes/koneksi.php';
 
